@@ -17,8 +17,8 @@ def raster_scan(img,L,U,D):
 	n_rows = len(img)
 	n_cols = len(img[0])
 
-	for x in xrange(1,n_rows - 1):
-		for y in xrange(1,n_cols - 1):
+	for x in range(1,n_rows - 1):
+		for y in range(1,n_cols - 1):
 			ix = img[x][y]
 			d = D[x][y]
 
@@ -48,8 +48,8 @@ def raster_scan_inv(img,L,U,D):
 	n_rows = len(img)
 	n_cols = len(img[0])
 
-	for x in xrange(n_rows - 2,1,-1):
-		for y in xrange(n_cols - 2,1,-1):
+	for x in range(n_rows - 2,1,-1):
+		for y in range(n_cols - 2,1,-1):
 
 			ix = img[x][y]
 			d = D[x][y]
@@ -99,7 +99,7 @@ def mbd(img, num_iters):
 	U_list = U.tolist()
 	D_list = D.tolist()
 
-	for x in xrange(0,num_iters):
+	for x in range(0,num_iters):
 		if x%2 == 1:
 			raster_scan(img_list,L_list,U_list,D_list)
 		else:
