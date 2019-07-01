@@ -227,10 +227,9 @@ def get_saliency_ft(img_path):
 
 	img_rgb = img_as_float(img)
 
-	img_lab = skimage.color.rgb2lab(img_rgb) 
+	img_lab = skimage.color.rgb2lab(img_rgb)
 
-	mean_val = np.mean(img_rgb,axis=(0,1))
-	print(mean_val.shape)
+	mean_val = np.mean(img_lab, axis=(0,1))
 
 	kernel_h = (1.0/16.0) * np.array([[1,4,6,4,1]])
 	kernel_w = kernel_h.transpose()
@@ -246,7 +245,7 @@ def get_saliency_ft(img_path):
 	im_blurred = np.dstack([blurred_l,blurred_a,blurred_b])
 
 	sal = np.linalg.norm(im_blurred - mean_val,axis = 2)
-	sal = sal**3
+	sal = sal**2
 	sal_max = np.max(sal)
 	sal_min = np.min(sal)
 	sal = 255 * ((sal - sal_min) / (sal_max - sal_min))
